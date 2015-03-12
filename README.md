@@ -10,24 +10,23 @@ The main purpose of this image is,
  * to provide a PHP runtime environment that is configured for Yii and
  * that has the base yii2 composer packages pre-installed.
 
-## How to use this Image
+## 1. How to use this Image
 
-To make use of this image you will combine it with your application source
-code and probably extend from it in your own `Dockerfile`. We also provide
-an application template called [yii2-dockerized]() that you can use as
-basis for your own application.
+To make use of this image you have to combine it with your application source
+code and probably extend from it in your own `Dockerfile`. For now you can either
 
-But you can also do a manual setup. We still recommend to study our example
-template to see how things fit together.
+ * create an app based on our [yii2-dockerized](https://github.com/codemix/yii2-dockerized) template or
+ * build your app manually.
 
-### Using yii2-dockerized
 
-This template serves as a basis for your own development. You *will*
-modify it to suit your needs. For more details check out the
+### 1.1 Using yii2-dockerized
+
+We provide a Yii2 application template that is based on this image, which you
+can use as starting point for your own development. For more details check out the
 docs for [yii2-dockerized](https://github.com/codemix/yii2-dockerized).
 
 
-### Manual setup
+### 1.2 Building An App Manually
 
 To use this image in your custom setup, you have to understand the basic
 idea behind it:
@@ -39,6 +38,8 @@ idea behind it:
  * You will *never* install any composer packages locally, but
    always into your container. If you do so, this will either override
    or add more packages to those already contained in this image.
+
+### 1.2.1 Basic setup
 
 So to get started you can create your own application template. You could
 start with the official base image (requires `composer` to be installed
@@ -74,6 +75,8 @@ web:
     volumes:
         - ./:/var/www/html/
 ```
+
+### 1.2.2 Adding Composer Packages
 
 To add composer packages, you need to provide a `composer.json` with
 some modifications:
@@ -130,10 +133,21 @@ Now you can run the bundled `composer` command in your container.
 docker-compose run --rm web compose update myrepo/mypackage
 ```
 
-#### Adding PHP extensions
+#### 1.2.3 Adding PHP Extensions
 
-To add PHP extensions you can add a line like this to your `Dockerfile`:
+Since this image extends from the official [php](https://registry.hub.docker.com/u/library/php/)
+image, you can use `docker-php-ext-install` in your Dockerfile. Here's an example:
 
 ```
-RUN docker-php-ext-install <extension_name>
+RUN apt-get update \
+    && apt-get -y install \
+            libfreetype6-dev \
+            libjpeg62-turbo-dev \
+            libmcrypt-dev \
+            libpng12-dev \
+        --no-install-recommends \
+    && rm -r /var/lib/apt/lists/* \
+    && docker-php-ext-install iconv mcrypt \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-install gd
 ```
