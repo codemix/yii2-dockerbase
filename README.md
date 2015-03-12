@@ -64,7 +64,7 @@ COPY . /var/www/html
 
 and a `docker-compose.yml`:
 
-```yaml
+```
 web:
     build: ./
     ports:
@@ -111,7 +111,7 @@ loose the advantage of reusing the composer packages contained in the image.
 You also have to map the local directory into the container in your `docker-compose.yml`.
 If you have problems with githubs rate limit, you can provide a github API token.
 
-```yaml
+```
 web:
     build: ./
     ports:
