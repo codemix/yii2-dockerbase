@@ -75,11 +75,11 @@ web:
         - ./:/var/www/html/
 ```
 
-To add more composer packages, you need to provide a `composer.json` with
+To add composer packages, you need to provide a `composer.json` with
 some modifications:
 
 
-```json
+```
 {
   "require": {
     "php": ">=5.4.0",
