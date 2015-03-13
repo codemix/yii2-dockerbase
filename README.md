@@ -4,57 +4,55 @@ Yii 2 Base
 This is a base image for Yii 2 projects.
 
 > **IMPORTANT: The image does *not* contain an app template!**
+> So you must always first combine it with your own application code to make it work!
 
 The main purpose of this image is,
 
  * to provide a PHP runtime environment that is configured for Yii and
  * that has the base yii2 composer packages pre-installed.
 
-## 1. How to use this Image
+## 1. Available versions
 
-To make use of this image you have to combine it with your application source
-code and probably extend from it in your own `Dockerfile`. For now you can either
+There are two versions of this image
 
- * create an app based on our [yii2-dockerized](https://github.com/codemix/yii2-dockerized) template or
- * build your app manually.
+ * Apache with PHP module (based on `php:5.6.6-apache`)
+ * PHP-FPM (based on `php:5.6.6-fpm` and `nginx`) which requires a `nginx` container
 
+## 2. How to use this Image
 
-### 1.1 Using yii2-dockerized
+For both versions we recommend to start with our
+[yii2-dockerized](https://github.com/codemix/yii2-dockerized) application template.
+It comes with a ready to use `Dockerfile` and exemplifies how this base image is meant
+to be used.
 
-We provide a Yii2 application template that is based on this image, which you
-can use as starting point for your own development. For more details check out the
-docs for [yii2-dockerized](https://github.com/codemix/yii2-dockerized).
+If you don't want to use that base template you can still build an application
+from scratch. But still we recommend to study that template first.
 
+Before you build your own application template, you should understand the basic
+idea behind this image:
 
-### 1.2 Building An App Manually
-
-To use this image in your custom setup, you have to understand the basic
-idea behind it:
-
- * The image has all yii2 related composer packages pre-installed
-   under `/var/www/vendor`.
+ * The image has all yii2 related composer packages pre-installed under `/var/www/vendor`.
  * The application code is expected under `/var/www/html`, with
    the public directory being `/var/www/html/web`.
  * You will *never* install any composer packages locally, but
    always into your container. If you do so, this will either override
    or add more packages to those already contained in this image.
 
-### 1.2.1 Basic setup
-
-So to get started you can create your own application template. You could
-start with the official base image (requires `composer` to be installed
-locally):
+You'll always need to have some application code available locally. To start, you
+could use the official base image:
 
 ```
-composer create-project --no-install yiisoft/yii2-base-app
+composer create-project --no-install yiisoft/yii2-app-basic
 ```
 
-> **Note:** Make sure you set the correct path for the composer autoloader
-> (`/var/www/vendor/autoload.php`). You should also configure the `vendorPath`
-> application setting in your configuration.
+> **Note:** You need to fix the paths to `autoload.php` and `Yii.php` in the
+> `index.php` file and also add a `'vendorPath' => '/var/www/vendor'` option
+> in the `config/web.php`.
 
-If you don't need any extra composer packages besides the yii2 packages,
-you can start with a very simple `Dockerfile`:
+
+### 2.1 Using the Apache Variant
+
+Create a `Dockerfile` in your application directory:
 
 ```
 FROM codemix/yii2-base:2.0.3-php-5.6.6-apache
@@ -76,11 +74,60 @@ web:
         - ./:/var/www/html/
 ```
 
-### 1.2.2 Adding Composer Packages
+Now you're ready to run `docker-compose up` to start your app. It should
+be available from `http://localhost:8080` or your boot2docker VM if you use that.
+
+
+### 2.2 Using the PHP-FPM Variant
+
+Create a `Dockerfile` in your application directory:
+
+```
+FROM codemix/yii2-base:2.0.3-php-fpm-5.6.6
+
+# Copy your app's source code into the container
+COPY . /var/www/html
+```
+
+For this variant, you'll also need an nginx container. We have included
+an example configuration with a `Dockerfile` in the image. You can copy
+it from the container with:
+
+```
+docker create -name temp codemix/yii2-base:2.0.3-php-fpm-5.6.6
+docker cp temp:/opt/nginx/ .
+docker rm temp
+```
+
+Finally create a `docker-compose.yml`:
+
+```
+app:
+    build: ./
+    expose:
+        - "9000"
+    volumes:
+        - ./:/var/www/html/
+nginx:
+    build: ./nginx
+    ports:
+        - "8080:80"
+    links:
+        - app
+    volumes_from:
+        - app
+```
+
+Now you're ready to run `docker-compose up` to start your app. It should
+be available from `http://localhost:8080` or your boot2docker VM if you use that.
+
+
+## 3. How to customize the setup
+
+### 3.1 Adding Composer Packages
 
 To add composer packages, you need to provide a `composer.json` with
 some modifications:
-
 
 ```
 {
@@ -133,10 +180,11 @@ Now you can run the bundled `composer` command in your container.
 docker-compose run --rm web compose update myrepo/mypackage
 ```
 
-#### 1.2.3 Adding PHP Extensions
+#### 3.2 Adding PHP Extensions
 
 Since this image extends from the official [php](https://registry.hub.docker.com/u/library/php/)
-image, you can use `docker-php-ext-install` in your Dockerfile. Here's an example:
+image, you can use `docker-php-ext-install` in your `Dockerfile`. You may also have to install
+some required packages with `apt-get install` first. Here's an example:
 
 ```
 RUN apt-get update \
