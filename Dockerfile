@@ -1,4 +1,4 @@
-FROM php:5.6.6-apache
+FROM php:5.6.6-fpm
 
 MAINTAINER haertl.mike@gmail.com
 
@@ -25,18 +25,18 @@ RUN apt-get update \
         --no-install-recommends \
     && rm -r /var/lib/apt/lists/* \
 
-    # Enable mod_rewrite
-    && a2enmod rewrite \
-
     # Install PHP extensions
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install zip \
-    && pecl install apcu-beta && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini
+    && pecl install apcu-beta && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
 
-COPY composer /usr/local/bin/composer
-COPY apache/apache2.conf /etc/apache2/apache2.conf
+    # Don't clear our valuable environment vars in PHP
+    && echo "\nclear_env = no" >> /usr/local/etc/php-fpm.conf
+
+COPY composer /usr/local/bin/
+COPY nginx /opt/nginx
 
 WORKDIR /var/www/html
 
