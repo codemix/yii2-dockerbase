@@ -45,6 +45,5 @@ WORKDIR /var/www/html
 # into /var/www/html and won't end up with an empty vendors/ directory.
 COPY composer.json /var/www/html/
 COPY composer.lock /var/www/html/
-RUN composer self-update --no-progress \
-    && composer install --prefer-dist --no-progress \
+RUN composer install --prefer-dist --no-progress \
     && rm composer.*

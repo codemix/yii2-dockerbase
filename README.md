@@ -1,3 +1,9 @@
+# Supported tags and respective `Dockerfile` links
+
+- [`2.0.3-apache`, `2.0-apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
+- [`2.0.3-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
+- [`2.0.3-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
+
 Yii 2 Base
 ==========
 
@@ -13,14 +19,15 @@ The main purpose of this image is,
 
 ## 1. Available versions
 
-There are two versions of this image
+There are three flavours of this image
 
- * Apache with PHP module (based on `php:5.6.6-apache`)
- * PHP-FPM (based on `php:5.6.6-fpm` and `nginx`) which requires a `nginx` container
+ * **Apache with PHP module** (based on `php:5.6.6-apache`)
+ * **PHP-FPM** (based on `php:5.6.6-fpm`)
+ * **HHVM** (based on `estebanmatias92/hhvm:3.5.1-fastcgi`)
 
 ## 2. How to use this Image
 
-For both versions we recommend to start with our
+For all available flavours we recommend to start with our
 [yii2-dockerized](https://github.com/codemix/yii2-dockerized) application template.
 It comes with a ready to use `Dockerfile` and exemplifies how this base image is meant
 to be used.
@@ -55,7 +62,7 @@ composer create-project --no-install yiisoft/yii2-app-basic
 Create a `Dockerfile` in your application directory:
 
 ```
-FROM codemix/yii2-base:2.0.3-php-5.6.6-apache
+FROM codemix/yii2-base:latest
 
 # Copy your app's source code into the container
 COPY . /var/www/html
@@ -78,12 +85,14 @@ Now you're ready to run `docker-compose up` to start your app. It should
 be available from `http://localhost:8080` or your boot2docker VM if you use that.
 
 
-### 2.2 Using the PHP-FPM Variant
+### 2.2 Using the PHP-FPM Or HHVM Flavour
 
 Create a `Dockerfile` in your application directory:
 
 ```
-FROM codemix/yii2-base:2.0.3-php-fpm-5.6.6
+FROM codemix/yii2-base:php-fpm
+# Or for HHVM:
+#FROM codemix/yii2-base:hhvm
 
 # Copy your app's source code into the container
 COPY . /var/www/html
@@ -94,7 +103,9 @@ an example configuration with a `Dockerfile` in the image. You can copy
 it from the container with:
 
 ```
-docker create -name temp codemix/yii2-base:2.0.3-php-fpm-5.6.6
+docker create -name temp codemix/yii2-base:php-fpm
+# Or for HHVM:
+#docker create -name temp codemix/yii2-base:hhvm
 docker cp temp:/opt/nginx/ .
 docker rm temp
 ```
@@ -182,7 +193,7 @@ docker-compose run --rm web compose update myrepo/mypackage
 
 #### 3.2 Adding PHP Extensions
 
-Since this image extends from the official [php](https://registry.hub.docker.com/u/library/php/)
+As the `apache` and `php-fpm` flavours extend from the official [php](https://registry.hub.docker.com/u/library/php/)
 image, you can use `docker-php-ext-install` in your `Dockerfile`. You may also have to install
 some required packages with `apt-get install` first. Here's an example:
 
@@ -199,3 +210,8 @@ RUN apt-get update \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd
 ```
+
+#### 3.3 Adding HHVM Extensions
+
+Please check the [hhvm](https://registry.hub.docker.com/u/estebanmatias92/hhvm/) base image for details.
+

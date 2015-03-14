@@ -1,11 +1,15 @@
-FROM php:5.6.6-fpm
+FROM estebanmatias92/hhvm:3.5.1-fastcgi
 
 MAINTAINER haertl.mike@gmail.com
 
 # Install composer and prepare system
 RUN apt-get update \
     && apt-get -y install \
+            curl \
             git \
+            # We need PHP for composer because there's an issue with HHVM and yii2-composer which
+            # breaks the creation of extensions.php (https://github.com/facebook/hhvm/issues/4797)
+            php5-cli \
         --no-install-recommends \
     && rm -r /var/lib/apt/lists/* \
 
@@ -17,26 +21,7 @@ RUN apt-get update \
     # Fix write permissions with shared folders
     && usermod -u 1000 www-data
 
-# Install required PHP extensions
-RUN apt-get update \
-    && apt-get -y install \
-            libmcrypt-dev \
-            zlib1g-dev \
-        --no-install-recommends \
-    && rm -r /var/lib/apt/lists/* \
-
-    # Install PHP extensions
-    && docker-php-ext-install pdo_mysql \
-    && docker-php-ext-install mbstring \
-    && docker-php-ext-install mcrypt \
-    && docker-php-ext-install zip \
-    && pecl install apcu-beta && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
-
-    # Don't clear our valuable environment vars in PHP
-    && echo "\nclear_env = no" >> /usr/local/etc/php-fpm.conf
-
 COPY composer /usr/local/bin/
-COPY nginx /opt/nginx
 
 WORKDIR /var/www/html
 
