@@ -36,7 +36,7 @@ RUN apt-get update \
     && pecl install apcu-beta && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini
 
 COPY composer /usr/local/bin/composer
-COPY apache/apache2.conf /etc/apache2/apache2.conf
+COPY apache2.conf /etc/apache2/apache2.conf
 
 WORKDIR /var/www/html
 
