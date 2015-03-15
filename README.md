@@ -25,12 +25,20 @@ There are three flavours of this image
  * **PHP-FPM** (based on `php:5.6.6-fpm`)
  * **HHVM** (based on `estebanmatias92/hhvm:3.5.1-fastcgi`)
 
+
 ## 2. How to use this Image
 
-For all available flavours we recommend to start with our
-[yii2-dockerized](https://github.com/codemix/yii2-dockerized) application template.
+### 2.1 Using our `yii2-dockerized` Application Template
+
+For all available flavours we recommend to start with our dockerized application
+template for Yii2.
+
+[https://github.com/codemix/yii2-dockerized](https://github.com/codemix/yii2-dockerized)
+
 It comes with a ready to use `Dockerfile` and exemplifies how this base image is meant
 to be used.
+
+### 2.2 Using your own Application Template
 
 If you don't want to use that base template you can still build an application
 from scratch. But still we recommend to study that template first.
@@ -57,7 +65,7 @@ composer create-project --no-install yiisoft/yii2-app-basic
 > in the `config/web.php`.
 
 
-### 2.1 Using the Apache Variant
+#### 2.2.1 Using the Apache Variant
 
 Create a `Dockerfile` in your application directory:
 
@@ -85,7 +93,7 @@ Now you're ready to run `docker-compose up` to start your app. It should
 be available from `http://localhost:8080` or your boot2docker VM if you use that.
 
 
-### 2.2 Using the PHP-FPM Or HHVM Flavour
+#### 2.2.2 Using the PHP-FPM or HHVM Flavour
 
 Create a `Dockerfile` in your application directory:
 
@@ -133,9 +141,7 @@ Now you're ready to run `docker-compose up` to start your app. It should
 be available from `http://localhost:8080` or your boot2docker VM if you use that.
 
 
-## 3. How to customize the setup
-
-### 3.1 Adding Composer Packages
+### 2.3 Adding Composer Packages
 
 To add composer packages, you need to provide a `composer.json` with
 some modifications:
@@ -191,7 +197,7 @@ Now you can run the bundled `composer` command in your container.
 docker-compose run --rm web compose update myrepo/mypackage
 ```
 
-#### 3.2 Adding PHP Extensions
+### 2.4 Adding PHP Extensions
 
 As the `apache` and `php-fpm` flavours extend from the official [php](https://registry.hub.docker.com/u/library/php/)
 image, you can use `docker-php-ext-install` in your `Dockerfile`. You may also have to install
@@ -211,7 +217,7 @@ RUN apt-get update \
     && docker-php-ext-install gd
 ```
 
-#### 3.3 Adding HHVM Extensions
+### 2.5 Adding HHVM Extensions
 
 Please check the [hhvm](https://registry.hub.docker.com/u/estebanmatias92/hhvm/) base image for details.
 
