@@ -8,17 +8,23 @@ ENV PATH $PATH:/root/.composer/vendor/bin
 RUN apt-get update \
     && apt-get -y install \
             git \
+            g++ \
+            libicu-dev \
             libmcrypt-dev \
             zlib1g-dev \
         --no-install-recommends \
-    && rm -r /var/lib/apt/lists/* \
 
     # Install PHP extensions
+    && docker-php-ext-install intl \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install zip \
     && pecl install apcu-beta && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
+
+    && apt-get purge -y g++ \
+    && apt-get autoremove -y \
+    && rm -r /var/lib/apt/lists/* \
 
     # Don't clear our valuable environment vars in PHP
     && echo "\nclear_env = no" >> /usr/local/etc/php-fpm.conf \
