@@ -1,4 +1,4 @@
-FROM estebanmatias92/hhvm:3.5.1-fastcgi
+FROM estebanmatias92/hhvm:3.7.0-fastcgi
 
 MAINTAINER haertl.mike@gmail.com
 
