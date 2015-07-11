@@ -1,13 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.0.3-apache` (*Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/aea01c5214af439d83b9fd475776c0017f872962/2.0/apache/Dockerfile)
-- [`2.0.4-apache` (*Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/90e826047945ed743971eab63b76a67d971c8687/2.0/apache/Dockerfile)
 - [`2.0.5-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
-- [`2.0.3-php-fpm` (*Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/aea01c5214af439d83b9fd475776c0017f872962/2.0/php-fpm/Dockerfile)
-- [`2.0.4-php-fpm` (*Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/90e826047945ed743971eab63b76a67d971c8687/2.0/php-fpm/Dockerfile)
 - [`2.0.5-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
-- [`2.0.3-hhvm` (*Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/aea01c5214af439d83b9fd475776c0017f872962/2.0/hhvm/Dockerfile)
-- [`2.0.4-hhvm` (*Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/90e826047945ed743971eab63b76a67d971c8687/2.0/hhvm/Dockerfile)
 - [`2.0.5-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
 
 Yii 2 Base
