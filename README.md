@@ -1,8 +1,8 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.0.5-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
-- [`2.0.5-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
-- [`2.0.5-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
+- [`2.0.6-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
+- [`2.0.6-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
+- [`2.0.6-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
 
 Check the [tags](https://registry.hub.docker.com/u/codemix/yii2-base/tags/manage/) page for a full list of available tags.
 
@@ -52,11 +52,11 @@ idea behind this image:
  * The application code is expected under `/var/www/html`, with
    the public directory being `/var/www/html/web`.
  * You will *never* install any composer packages locally, but
-   always into your container. If you do so, this will either override
+   always into your container. When you do so, it will either override
    or add more packages to those already contained in this image.
 
-You'll always need to have some application code available locally. To start, you
-could use the official base image:
+You'll also need to prepare some application code locally which will be copied to your
+image during the build phase. To start, you could use the official base image:
 
 ```
 composer create-project --no-install yiisoft/yii2-app-basic
@@ -152,13 +152,16 @@ some modifications:
 {
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "2.0.3",
-    "yiisoft/yii2-bootstrap": "2.0.3",
-    "yiisoft/yii2-swiftmailer": "2.0.3"
+    "yiisoft/yii2": "2.0.6",
+    "yiisoft/yii2-bootstrap": "~2.0.0",
+    "yiisoft/yii2-jui": "~2.0.0",
+    "yiisoft/yii2-swiftmailer": "~2.0.0"
   },
   "require-dev": {
-    "yiisoft/yii2-debug": "2.0.3",
-    "yiisoft/yii2-gii": "2.0.3"
+    "yiisoft/yii2-debug": "~2.0.0",
+    "yiisoft/yii2-gii": "~2.0.0",
+    "yiisoft/yii2-codeception": "~2.0.0",
+    "yiisoft/yii2-faker": "~2.0.0"
   },
   "config": {
     "process-timeout": 1800,
