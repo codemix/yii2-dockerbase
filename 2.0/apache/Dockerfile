@@ -23,7 +23,7 @@ RUN apt-get update \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install zip \
-    && pecl install apcu && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
+    && pecl install apcu-4.0.10 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
 
     && apt-get purge -y g++ \
     && apt-get autoremove -y \
