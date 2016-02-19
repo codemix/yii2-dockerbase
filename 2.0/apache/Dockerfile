@@ -1,4 +1,4 @@
-FROM php:5.6.10-apache
+FROM php:5.6.18-apache
 
 MAINTAINER haertl.mike@gmail.com
 

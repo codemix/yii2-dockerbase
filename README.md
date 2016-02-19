@@ -1,8 +1,8 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.0.6-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
-- [`2.0.6-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
-- [`2.0.6-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
+- [`2.0.7-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
+- [`2.0.7-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
+- [`2.0.7-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
 
 Check the [tags](https://registry.hub.docker.com/u/codemix/yii2-base/tags/manage/) page for a full list of available tags.
 
@@ -152,7 +152,7 @@ some modifications:
 {
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "2.0.6",
+    "yiisoft/yii2": "2.0.7",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-jui": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0"
