@@ -20,7 +20,7 @@ RUN apt-get update \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mcrypt \
     && docker-php-ext-install zip \
-    && pecl install apcu-4.0.10 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
+    && pecl install apcu-4.0.11 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
 
     && apt-get purge -y g++ \
     && apt-get autoremove -y \
@@ -35,7 +35,7 @@ RUN apt-get update \
 # Next composer and global composer package, as their versions may change from time to time
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer.phar \
-    && composer.phar global require --no-progress "fxp/composer-asset-plugin:~1.1.3" \
+    && composer.phar global require --no-progress "fxp/composer-asset-plugin:~1.1.4" \
     && composer.phar global require --no-progress "codeception/codeception=2.0.*" \
     && composer.phar global require --no-progress "codeception/specify=*" \
     && composer.phar global require --no-progress "codeception/verify=*"

@@ -18,7 +18,7 @@ RUN apt-get update \
     && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer.phar \
 
-    && composer.phar global require --no-progress "fxp/composer-asset-plugin:~1.1.3" \
+    && composer.phar global require --no-progress "fxp/composer-asset-plugin:~1.1.4" \
     && composer.phar global require --no-progress "codeception/codeception=2.0.*" \
     && composer.phar global require --no-progress "codeception/specify=*" \
     && composer.phar global require --no-progress "codeception/verify=*" \
