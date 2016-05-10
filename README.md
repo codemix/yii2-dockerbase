@@ -25,9 +25,9 @@ The main purpose of this image is,
 
 There are three flavours of this image
 
- * **Apache with PHP module** (based on `php:7.0.6-apache` or `php:5.6.10-apache`)
- * **PHP-FPM** (based on `php:7.0.6-fpm` or `php:5.6.10-fpm`)
- * **HHVM** (based on `estebanmatias92/hhvm:3.7.0-fastcgi`)
+ * **Apache with PHP module** (based on `php:7.0.6-apache` or `php:5.6.18-apache`)
+ * **PHP-FPM** (based on `php:7.0.6-fpm` or `php:5.6.18-fpm`)
+ * **HHVM** (based on `estebanmatias92/hhvm:3.8.1-fastcgi`)
 
 
 ## 2. How to use this Image
