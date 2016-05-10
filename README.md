@@ -1,8 +1,10 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.0.7-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
-- [`2.0.7-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
-- [`2.0.7-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
+- [`2.0.8-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
+- [`2.0.8-php7-apache`, `2.0-php7-apache`, `php7-apache`, `latest-php7` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile.php7)
+- [`2.0.8-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
+- [`2.0.8-php7-fpm`, `2.0-php7-fpm`, `php7-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile.php7)
+- [`2.0.8-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
 
 Check the [tags](https://registry.hub.docker.com/u/codemix/yii2-base/tags/manage/) page for a full list of available tags.
 
@@ -23,8 +25,8 @@ The main purpose of this image is,
 
 There are three flavours of this image
 
- * **Apache with PHP module** (based on `php:5.6.10-apache`)
- * **PHP-FPM** (based on `php:5.6.10-fpm`)
+ * **Apache with PHP module** (based on `php:7.0.6-apache` or `php:5.6.10-apache`)
+ * **PHP-FPM** (based on `php:7.0.6-fpm` or `php:5.6.10-fpm`)
  * **HHVM** (based on `estebanmatias92/hhvm:3.7.0-fastcgi`)
 
 
@@ -152,7 +154,7 @@ some modifications:
 {
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "2.0.7",
+    "yiisoft/yii2": "2.0.8",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-jui": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0"
