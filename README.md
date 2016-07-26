@@ -115,9 +115,9 @@ an example configuration with a `Dockerfile` in the image. You can copy
 it from the container with:
 
 ```
-docker create -name temp codemix/yii2-base:php-fpm
+docker create --name temp codemix/yii2-base:php-fpm
 # Or for HHVM:
-#docker create -name temp codemix/yii2-base:hhvm
+#docker create --name temp codemix/yii2-base:hhvm
 docker cp temp:/opt/nginx/ .
 docker rm temp
 ```
