@@ -6,7 +6,7 @@
 - [`2.0.10-php7-fpm`, `2.0-php7-fpm`, `php7-fpm` (*2.0/php-fpm/Dockerfile.php7*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile.php7)
 - [`2.0.10-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
 
-Check the [tags](https://registry.hub.docker.com/u/codemix/yii2-base/tags/) page for a full list of available tags.
+Check the [tags](https://hub.docker.com/r/codemix/yii2-base/tags/) page for a full list of available tags.
 
 Yii 2 Base
 ==========
