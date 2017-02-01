@@ -22,6 +22,7 @@ RUN apt-get update \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install mcrypt \
+    && docker-php-ext-install opcache \
     && docker-php-ext-install zip \
     && pecl install apcu-4.0.11 && echo extension=apcu.so > /usr/local/etc/php/conf.d/apcu.ini \
 
