@@ -1,10 +1,10 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`2.0.12-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
-- [`2.0.12-php7-apache`, `2.0-php7-apache`, `php7-apache`, `latest-php7` (*2.0/apache/Dockerfile.php7*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile.php7)
-- [`2.0.12-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
-- [`2.0.12-php7-fpm`, `2.0-php7-fpm`, `php7-fpm` (*2.0/php-fpm/Dockerfile.php7*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile.php7)
-- [`2.0.12-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
+- [`2.0.13.1-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
+- [`2.0.13.1-php7-apache`, `2.0-php7-apache`, `php7-apache`, `latest-php7` (*2.0/apache/Dockerfile.php7*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile.php7)
+- [`2.0.13.1-php-fpm`, `2.0-php-fpm`, `php-fpm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile)
+- [`2.0.13.1-php7-fpm`, `2.0-php7-fpm`, `php7-fpm` (*2.0/php-fpm/Dockerfile.php7*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/php-fpm/Dockerfile.php7)
+- [`2.0.13.1-hhvm`, `2.0-hhvm`, `hhvm` (*2.0/php-fpm/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/hhvm/Dockerfile)
 
 Check the [tags](https://hub.docker.com/r/codemix/yii2-base/tags/) page for a full list of available tags.
 
@@ -154,7 +154,7 @@ some modifications:
 {
   "require": {
     "php": ">=5.4.0",
-    "yiisoft/yii2": "2.0.12",
+    "yiisoft/yii2": "2.0.13.1",
     "yiisoft/yii2-bootstrap": "~2.0.0",
     "yiisoft/yii2-jui": "~2.0.0",
     "yiisoft/yii2-swiftmailer": "~2.0.0"
