@@ -1,3 +1,10 @@
+# DEPRECATED!
+
+This image is now **DEPRECATED**. We may still push updates for Yii2 2.0.x but
+will cease with Yii2 2.1.x. Our refactored template under
+[codemix/yii2-dockerized](https://github.com/codemix/yii2-dockerized) now
+includes a build step for app specific base images instead.
+
 # Supported tags and respective `Dockerfile` links
 
 - [`2.0.13.1-apache`, `2.0-apache`, `apache`, `latest` (*2.0/apache/Dockerfile*)](https://github.com/codemix/yii2-dockerbase/blob/master/2.0/apache/Dockerfile)
